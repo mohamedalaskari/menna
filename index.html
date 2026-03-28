@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💖 منة 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Dancing+Script:wght@700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:       #ff6fa1;
+      --deep-rose:  #c0295e;
+      --blush:      #ffd6e7;
+      --cream:      #fff5f8;
+      --gold:       #f7c59f;
+      --text-dark:  #5a1a33;
+    }
+
+    html, body {
+      width: 100%; min-height: 100vh;
+      font-family: 'Tajawal', sans-serif;
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* =============================================
+       ANIMATED GRADIENT BACKGROUND
+    ============================================= */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(135deg,
+        #ffe4f0 0%, #ffd6e7 25%,
+        #ffb3d1 50%, #ffc8e0 75%,
+        #ffe4f0 100%);
+      background-size: 400% 400%;
+      animation: gradientFlow 10s ease infinite;
+    }
+
+    @keyframes gradientFlow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+
+    /* =============================================
+       FLOATING HEARTS CANVAS LAYER
+    ============================================= */
+    #hearts-canvas {
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none;
+    }
+
+    /* =============================================
+       MAIN LAYOUT
+    ============================================= */
+    .page-wrapper {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      gap: 36px;
+    }
+
+    /* =============================================
+       HEADER — NAME
+    ============================================= */
+    .name-block {
+      text-align: center;
+      animation: fadeSlideDown 1s ease both;
+    }
+
+    .name-label {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 4px;
+      color: var(--deep-rose);
+      text-transform: uppercase;
+      opacity: .75;
+      margin-bottom: 8px;
+    }
+
+    .name-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3.5rem, 12vw, 7rem);
+      background: linear-gradient(135deg, var(--deep-rose), #ff85b3, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      filter: drop-shadow(0 4px 24px rgba(192,41,94,.25));
+      animation: namePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes namePulse {
+      0%, 100% { filter: drop-shadow(0 4px 24px rgba(192,41,94,.25)); }
+      50%       { filter: drop-shadow(0 4px 40px rgba(192,41,94,.55)); }
+    }
+
+    /* =============================================
+       SPARKLE DIVIDER
+    ============================================= */
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      color: var(--pink); font-size: 1.4rem;
+      animation: fadeIn 1.4s ease both;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      display: block; width: 80px; height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--pink), transparent);
+    }
+
+    /* =============================================
+       ROMANTIC PHRASE
+    ============================================= */
+    .phrase-card {
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(255,107,161,.35);
+      border-radius: 24px;
+      padding: 28px 40px;
+      text-align: center;
+      max-width: 480px; width: 100%;
+      box-shadow: 0 8px 40px rgba(192,41,94,.12);
+      animation: fadeSlideUp 1.2s ease both;
+    }
+
+    .phrase-main {
+      font-family: 'Scheherazade New', serif;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      color: var(--deep-rose);
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 1px;
+    }
+
+    .phrase-sub {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #b05878;
+      opacity: .85;
+    }
+
+    .kiss-emoji {
+      display: inline-block;
+      font-size: 2.6rem;
+      margin-top: 14px;
+      animation: kissWobble 1.8s ease-in-out infinite;
+      cursor: default;
+    }
+
+    @keyframes kissWobble {
+      0%, 100% { transform: scale(1) rotate(-5deg); }
+      50%       { transform: scale(1.25) rotate(5deg); }
+    }
+
+    /* =============================================
+       IMAGE STRIP
+    ============================================= */
+    .image-strip {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeIn 1.6s ease both;
+    }
+
+    .img-frame {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,107,161,.5);
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(192,41,94,.2);
+      transition: transform .35s ease, box-shadow .35s ease;
+      position: relative;
+    }
+
+    .img-frame::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 30%,
+        rgba(255,255,255,.25), transparent 70%);
+    }
+
+    .img-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+
+    .img-frame:hover {
+      transform: scale(1.1) rotate(3deg);
+      box-shadow: 0 12px 40px rgba(192,41,94,.35);
+    }
+
+    /* =============================================
+       BUTTONS
+    ============================================= */
+    .buttons-row {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeSlideUp 1.8s ease both;
+    }
+
+    .btn {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px 38px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s;
+      letter-spacing: .5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Primary — اوكي ماشي */
+    .btn-yes {
+      background: linear-gradient(135deg, var(--deep-rose), var(--pink));
+      color: #fff;
+      box-shadow: 0 6px 28px rgba(192,41,94,.4);
+    }
+
+    .btn-yes::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.25), transparent);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .btn-yes:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 14px 40px rgba(192,41,94,.5); }
+    .btn-yes:hover::before { opacity: 1; }
+    .btn-yes:active { transform: scale(.97); }
+
+    /* Secondary — لا */
+    .btn-no {
+      background: rgba(255,255,255,.6);
+      backdrop-filter: blur(8px);
+      color: #b05878;
+      border: 1.5px solid rgba(255,107,161,.4);
+      box-shadow: 0 4px 16px rgba(192,41,94,.1);
+    }
+
+    .btn-no:hover { transform: scale(1.03); }
+    /* لا — يعمل مش بيعمل حاجة  */
+
+    /* =============================================
+       MODAL / POPUP
+    ============================================= */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(90,26,51,.45);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .4s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1; pointer-events: all;
+    }
+
+    .modal-box {
+      background: linear-gradient(145deg, #fff0f6, #ffe4f0);
+      border: 2px solid rgba(255,107,161,.45);
+      border-radius: 28px;
+      padding: 48px 44px;
+      text-align: center;
+      max-width: 380px; width: 90%;
+      box-shadow: 0 20px 80px rgba(192,41,94,.3);
+      transform: scale(.7) translateY(40px);
+      transition: transform .45s cubic-bezier(.34,1.56,.64,1);
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-emoji {
+      font-size: 3.5rem;
+      animation: bounceSpin 1.2s ease infinite alternate;
+      display: block; margin-bottom: 16px;
+    }
+
+    @keyframes bounceSpin {
+      0%   { transform: scale(1)    rotate(-8deg); }
+      100% { transform: scale(1.15) rotate(8deg);  }
+    }
+
+    .modal-message {
+      font-family: 'Scheherazade New', serif;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      color: var(--deep-rose);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .modal-sub {
+      margin-top: 10px;
+      font-size: .95rem;
+      color: #b05878;
+    }
+
+    .modal-close {
+      margin-top: 28px;
+      background: linear-gradient(135deg, var(--deep-rose), var(--pink));
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 11px 34px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(192,41,94,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .modal-close:hover { transform: scale(1.06); box-shadow: 0 10px 30px rgba(192,41,94,.5); }
+
+    /* confetti hearts inside modal */
+    .modal-hearts {
+      position: absolute; inset: 0; overflow: hidden;
+      border-radius: 28px; pointer-events: none;
+    }
+
+    .m-heart {
+      position: absolute;
+      font-size: 1.2rem;
+      animation: floatUp 2.4s ease-in-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0%   { opacity: 0;  transform: translateY(20px) scale(.6); }
+      20%  { opacity: 1; }
+      80%  { opacity: .8; }
+      100% { opacity: 0;  transform: translateY(-80px) scale(1.2); }
+    }
+
+    /* =============================================
+       GENERAL KEYFRAMES
+    ============================================= */
+    @keyframes fadeIn        { from { opacity: 0; }              to { opacity: 1; } }
+    @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeSlideUp   { from { opacity: 0; transform: translateY(30px);  } to { opacity: 1; transform: none; } }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer-note {
+      font-size: .85rem;
+      color: #c06080;
+      opacity: .7;
+      animation: fadeIn 2.5s ease both;
+    }
+
+    /* =============================================
+       MOBILE
+    ============================================= */
+    @media (max-width: 500px) {
+      .phrase-card { padding: 22px 24px; }
+      .img-frame   { width: 100px; height: 100px; }
+      .btn         { padding: 12px 28px; font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts layer -->
+  <canvas id="hearts-canvas"></canvas>
+
+  <!-- ── MAIN PAGE ────────────────────────────────── -->
+  <div class="page-wrapper">
+
+    <!-- Name -->
+    <div class="name-block">
+      <p class="name-label">✨ إلى القمر الصغير ✨</p>
+      <h1 class="name-title">Menna</h1>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider">💖</div>
+
+    <!-- Romantic phrase card -->
+    <div class="phrase-card">
+      <p class="phrase-main">هاتي بوسة 😘</p>
+      <p class="phrase-sub">بجد… محتاجها دلوقتي 🥺</p>
+      <span class="kiss-emoji">😘</span>
+    </div>
+
+    <!-- Image strip (cute placeholder images) -->
+    <div class="image-strip">
+      <div class="img-frame">
+        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=260&q=80"
+             alt="roses" loading="lazy"/>
+      </div>
+      <div class="img-frame">
+        <img src="https://images.unsplash.com/photo-1522441815192-d9f04eb0615c?w=260&q=80"
+             alt="love lights" loading="lazy"/>
+      </div>
+      <div class="img-frame">
+        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=260&q=80"
+             alt="couple" loading="lazy"/>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons-row">
+      <button class="btn btn-yes" id="btnYes">اوكي ماشي 💌</button>
+      <button class="btn btn-no"  id="btnNo" >لا 🙈</button>
+    </div>
+
+    <p class="footer-note">صنعتلك ده بكل حبي 💗</p>
+  </div>
+
+  <!-- ── MODAL ─────────────────────────────────────── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+
+      <!-- Floating mini hearts inside modal -->
+      <div class="modal-hearts" id="modalHearts"></div>
+
+      <span class="modal-emoji">💌</span>
+      <p class="modal-message">هدهالك يوم التلات 🌹</p>
+      <p class="modal-sub">اوعي تنسي… يوم التلات يا حبيبتي 😘💖</p>
+      <button class="modal-close" id="modalClose">تمام يا قلبي 💕</button>
+    </div>
+  </div>
+
+  <!-- ── SCRIPTS ────────────────────────────────────── -->
+  <script>
+    /* =============================================
+       1. FLOATING HEARTS — CANVAS
+    ============================================= */
+    (function() {
+      const canvas  = document.getElementById('hearts-canvas');
+      const ctx     = canvas.getContext('2d');
+      const HEARTS  = [];
+      const COUNT   = 38;
+      const EMOJIS  = ['💖','💗','💓','💞','💕','❤️','🩷','💝'];
+
+      function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function randomHeart() {
+        return {
+          x:      Math.random() * window.innerWidth,
+          y:      window.innerHeight + Math.random() * 200,
+          size:   14 + Math.random() * 22,
+          speed:  0.4 + Math.random() * 1.2,
+          drift:  (Math.random() - .5) * .8,
+          alpha:  .4 + Math.random() * .6,
+          emoji:  EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
+          wobble: Math.random() * Math.PI * 2,
+          wobbleSpeed: 0.02 + Math.random() * 0.03,
+        };
+      }
+
+      for (let i = 0; i < COUNT; i++) {
+        const h = randomHeart();
+        h.y = Math.random() * window.innerHeight; // scatter initial positions
+        HEARTS.push(h);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        HEARTS.forEach(h => {
+          ctx.save();
+          ctx.globalAlpha = h.alpha;
+          ctx.font = `${h.size}px serif`;
+          ctx.fillText(h.emoji,
+            h.x + Math.sin(h.wobble) * 12,
+            h.y);
+          ctx.restore();
+
+          h.y          -= h.speed;
+          h.x          += h.drift;
+          h.wobble     += h.wobbleSpeed;
+
+          // reset when off screen top
+          if (h.y < -40) {
+            Object.assign(h, randomHeart());
+          }
+        });
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    /* =============================================
+       2. MODAL LOGIC
+    ============================================= */
+    const overlay    = document.getElementById('modalOverlay');
+    const btnYes     = document.getElementById('btnYes');
+    const btnNo      = document.getElementById('btnNo');
+    const modalClose = document.getElementById('modalClose');
+    const modalHearts= document.getElementById('modalHearts');
+
+    // Spawn tiny hearts inside modal
+    function spawnModalHearts() {
+      modalHearts.innerHTML = '';
+      const POSITIONS = [10,25,40,55,70,85];
+      const DELAYS    = [0, .4, .8, 1.2, 1.6, 2];
+      POSITIONS.forEach((left, i) => {
+        const el = document.createElement('span');
+        el.className   = 'm-heart';
+        el.textContent = ['💖','💗','💕','❤️','🩷'][i % 5];
+        el.style.left  = left + '%';
+        el.style.bottom= '10%';
+        el.style.animationDelay = DELAYS[i] + 's';
+        modalHearts.appendChild(el);
+      });
+    }
+
+    // Open
+    btnYes.addEventListener('click', () => {
+      spawnModalHearts();
+      overlay.classList.add('active');
+    });
+
+    // Close
+    function closeModal() { overlay.classList.remove('active'); }
+    modalClose.addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeModal();
+    });
+
+    // لا — لا بيعمل حاجة خالص  😂
+    btnNo.addEventListener('click', e => { e.preventDefault(); });
+
+    /* =============================================
+       3. CURSOR TRAIL HEARTS (desktop only)
+    ============================================= */
+    if (window.matchMedia('(hover:hover)').matches) {
+      document.addEventListener('mousemove', e => {
+        if (Math.random() > .55) return; // throttle
+        const el = document.createElement('div');
+        el.textContent = ['💖','💗','💓'][Math.floor(Math.random()*3)];
+        el.style.cssText = `
+          position:fixed;
+          left:${e.clientX - 10}px;
+          top:${e.clientY - 10}px;
+          font-size:${14 + Math.random()*10}px;
+          pointer-events:none;
+          z-index:999;
+          transition: transform 1s ease, opacity 1s ease;
+          transform: translateY(0);
+          opacity:1;
+        `;
+        document.body.appendChild(el);
+        requestAnimationFrame(() => {
+          el.style.transform = `translateY(-50px) scale(1.4)`;
+          el.style.opacity   = '0';
+        });
+        setTimeout(() => el.remove(), 1000);
+      });
+    }
+  </script>
+</body>
+</html>
